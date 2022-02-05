@@ -26,6 +26,12 @@ public class NBody {
 
         return planets;
     }
+    public static void draw(Planet[] planets, Double rad){
+        StdDraw.picture(0, 0, "/images/starfield.jpg", rad*2, rad*2);
+            for (int i = 0; i < planets.length; i++) {
+                StdDraw.picture(planets[i].xxPos, planets[i].yyPos, "/images/"+planets[i].imgFileName);
+            }
+    }
     public static void main(String[] args) {
         //read time varibles.
         Double T=Double.parseDouble(args[0]);
@@ -55,10 +61,7 @@ public class NBody {
             for (int i = 0; i < planets.length; i++) {
                 planets[i].update(dt,xForces[i],yForces[i]);
             }
-            StdDraw.picture(0, 0, "/images/starfield.jpg", rad*2, rad*2);
-            for (int i = 0; i < planets.length; i++) {
-                StdDraw.picture(planets[i].xxPos, planets[i].yyPos, "/images/"+planets[i].imgFileName);
-            }
+            draw(planets,rad);
             StdDraw.show();
             StdDraw.pause(10);
 			
